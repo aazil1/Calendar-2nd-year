@@ -1,0 +1,318 @@
+body {
+    background-image: url('https://images.hdqwalls.com/download/person-sitting-alone-at-sunset-with-large-sun-cy-3840x2400.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.calendar {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background: rgba(255, 255, 255, 0.85); /* White with slight transparency */
+    backdrop-filter: blur(8px); /* Blur the background behind the calendar */
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: Helvetica, Arial, sans-serif; /* Updated font */
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+
+.calendar-header {
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+    border: none;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    border-bottom: none;
+}
+
+.row {
+    display: flex;
+}
+
+.col {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    border: none;
+    background: transparent;
+}
+
+.day {
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+.days {
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+    color: red;
+}
+
+
+.row .col.day:first-child,
+.row .col.day:last-child {
+    color: red;
+}
+
+.day:hover {
+    background-color: #9b9a9a;
+}
+
+.days:hover {
+    background-color: #9b9a9a;
+}
+
+.text-danger {
+    color: red;
+}
+
+.empty {
+    background-color: transparent;
+    cursor: default;
+}
+
+.year {
+    background-color: transparent;
+    text-align: left;
+    font-weight: bold;
+    padding: 0;
+    font-size: 16px;
+    margin-top: 0;
+}
+
+.calendar-side-panel {
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
+    background: transparent;
+    border-right: 1px solid #ddd;
+    padding: 16px 8px;
+    box-sizing: border-box;
+    background-color: #ca5c13;
+}
+
+.calendar-months-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.calendar-months-panel li {
+    padding: 8px 0;
+    text-align: left;
+    cursor: pointer;
+    font-size: 15px;
+    color: #ca5c13;
+    border-radius: 4px;
+    transition: 0.2s, color 0.2s;
+}
+
+.calendar-months-panel li:hover {
+    background: #9b9a9a;
+    color: #fff;
+}
+
+.calendar-main {
+    flex: 1;
+}
+
+.months-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.months-list a {
+    color: #ca5c13;
+    text-decoration: none;
+    display: block;
+    padding: 8px 0;
+    border-radius: 4px;
+    transition: 0.2s, color 0.2s;
+    text-align: center;
+}
+
+
+/* Notes */
+.calendar-note-box {
+    margin: 18px auto 0 auto;
+    width: 95%;
+    background: #fff7f0;
+    border: 1px solid #ca5c13;
+    border-radius: 6px;
+    padding: 12px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(202, 92, 19, 0.08);
+}
+
+.calendar-note-box h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #ca5c13;
+    font-weight: bold;
+}
+
+.calendar-note-box textarea {
+    width: 100%;
+    min-height: 60px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    padding: 8px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Holliday area */
+.calendar-holidays-list {
+    margin: 24px auto;
+    width: 80%;
+    background: #fff7f0;
+    border: 1px solid #ca5c13;
+    border-radius: 6px;
+    padding: 12px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(202, 92, 19, 0.08);
+    text-align: center;
+}
+
+.calendar-holidays-list h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #ca5c13;
+    font-weight: bold;
+}
+
+.calendar-holidays-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.calendar-holidays-list li {
+    font-size: 15px;
+    color: #a94a0f;
+    margin-bottom: 4px;
+}
+
+.holiday-number {
+    font-weight: bold;
+    color: #ca5c13;
+}
+
+a:link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Add to style.css if not present */
+.holiday-tooltip {
+    position: absolute;
+    display: none;
+    background: #fff;
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    padding: 16px;
+    z-index: 1000;
+    min-width: 220px;
+    font-size: 15px;
+    pointer-events: none;
+    text-align: center;
+}
+.holiday-tooltip img {
+    max-width: 180px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+
+/* Mobile screens (≤ 600px) */
+@media (max-width: 500px) {
+  body {
+    height: auto; /* let content scroll */
+    padding: 10px;
+  }
+
+  .calendar {
+    box-shadow: none;
+    border-radius: 0;
+    max-width: 100%;
+  }
+
+  .calendar-note-box,
+  .calendar-holidays-list {
+    width: 100%;
+    margin: 12px 0;
+  }
+
+  .calendar-note-box h3,
+  .calendar-holidays-list h3 {
+    font-size: 14px;
+  }
+
+  .calendar-months-panel li {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  .day {
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+  }
+}
+
+.holiday {
+  color: red;
+
+}
+.holiday:hover {
+  background-color: #9b9a9a;
+}
+
+.calendar-week-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.calendar-week-panel {
+    align-items: center;
+    font-weight: bold;
+    margin-top: 160px;
+    text-align: center;
+    flex-direction: column;
+}
+
+.week {
+    justify-content: space-around;
+    color: #ca5c13;
+    margin-top: 53px;
+}

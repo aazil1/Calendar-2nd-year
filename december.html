@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="calendar">
+        <div class="calendar-side-panel">
+            <div class="calendar-months-panel">
+                <ul class="months-list">
+                    <li><a href="index.html">January</a></li>
+                    <li><a href="february.html">February</a></li>
+                    <li><a href="march.html">March</a></li>
+                    <li><a href="april.html">April</a></li>
+                    <li><a href="may.html">May</a></li>
+                    <li><a href="june.html">June</a></li>
+                    <li><a href="july.html">July</a></li>
+                    <li><a href="august.html">August</a></li>
+                    <li><a href="september.html">September</a></li>
+                    <li><a href="october.html">October</a></li>
+                    <li><a href="november.html">November</a></li>
+                    <li><a href="december.html">December</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="calendar-tooltip" class="calendar-tooltip"></div>
+        <div class="calendar-main">
+            <div class="top">
+                <h1 class="month">DECEMBER</h1>
+                <h2 class="year">2077</h2>
+            </div>
+            <div class="row calendar-header">
+                <div class="col">Sun</div>
+                <div class="col">Mon</div>
+                <div class="col">Tue</div>
+                <div class="col">Wed</div>
+                <div class="col">Thu</div>
+                <div class="col">Fri</div>
+                <div class="col">Sat</div>
+            </div>
+            <div class="row">
+                <div class="col day empty"></div>
+                <div class="col day empty"></div>
+                <div class="col day empty"></div>
+                <div class="col day">1</div>
+                <div class="col day">2</div>
+                <div class="col day">3</div>
+                <div class="col day">4</div>
+            </div>
+
+            <div class="row">
+                <div class="col day">5</div>
+                <div class="col day">6</div>
+                <div class="col day">7</div>
+                <div class="col day">8</div>
+                <div class="col day">9</div>
+                <div class="col day">10</div>
+                <div class="col day">11</div>
+            </div>
+
+            <div class="row">
+                <div class="col day">12</div>
+                <div class="col day">13</div>
+                <div class="col day">14</div>
+                <div class="col day">15</div>
+                <div class="col day">16</div>
+                <div class="col day">17</div>
+                <div class="col day">18</div>
+            </div>
+
+            <div class="row">
+                <div class="col day">19</div>
+                <div class="col day">20</div>
+                <div class="col day">21</div>
+                <div class="col day">22</div>
+                <div class="col day">23</div>
+                <div class="col day holiday">24</div>
+                <div class="col day holiday">25</div>
+            </div>
+
+            <div class="row">
+                <div class="col day">26</div>
+                <div class="col day">27</div>
+                <div class="col day">28</div>
+                <div class="col day">29</div>
+                <div class="col day holiday">30</div>
+                <div class="col day holiday">31</div>
+                <div class="col day empty"></div>
+            </div>
+            <!-- Holidays List -->
+            <div class="calendar-holidays-list">
+                <h3>Holidays</h3>
+                <ul>
+                    <li><strong class="holiday-number">December 24</strong> - Christmas Eve</li>
+                    <li><strong class="holiday-number">December 25</strong> - Christmas Day</li>
+                    <li><strong class="holiday-number">December 30</strong> - Rizal Day</li>
+                    <li><strong class="holiday-number">December 31</strong> - New Years' Eve</li>
+                </ul>
+            </div>
+            <div class="calendar-note-box">
+                <h3>Notes</h3>
+                <textarea placeholder="Write your notes here..."></textarea>
+            </div>
+            <br>
+            </div>
+                    <div class="calendar-week-panel">
+                        <div class="week">Week 1</div>
+                        <div class="week">Week 2</div>
+                        <div class="week">Week 3</div>
+                        <div class="week">Week 4</div>
+                        <div class="week">Week 5</div>
+                    </div>
+    </div>    
+    <div id="holiday-tooltip" class="holiday-tooltip"></div>
+    
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tooltip = document.getElementById('holiday-tooltip');
+    const holidayInfo = {
+        24: {
+            img: 'https://c.tadst.com/gfx/750w/istock-1054612438.jpg',
+            text: "Christmas Eve, which is the day before Christmas Day, is celebrated in many countries worldwide. It is a Christian observance that falls on December 24 in the Gregorian calendar."
+        },
+        25: {
+            img: 'https://c.tadst.com/gfx/750w/christmas.jpg',
+            text: "Christmas Day, on December 25, is one of the most festive Christian holidays in many countries around the world. It celebrates Jesus' birth."
+        },
+        30: {
+            img: 'https://upload.wikimedia.org/wikipedia/commons/1/12/119th_Rizal_Day_commemoration.jpg',
+            text: "Rizal Day is a public holiday. It is a day off for the general population, and schools and most businesses are closed."
+        },
+        31: {
+            img: 'https://c.tadst.com/gfx/750w/champagne-party.jpg',
+            text: "New Year's Eve is one of the largest global celebrations because it marks the last day of the year in the Gregorian calendar, December 31, before the New Year. Count down to the New Year no matter where you are in the world."
+        }
+    };
+
+    document.querySelectorAll('.col.day').forEach(function(cell) {
+        const day = cell.textContent.trim();
+        if (holidayInfo[day]) {
+            cell.addEventListener('click', function(e) {
+                tooltip.innerHTML = `<img src="${holidayInfo[day].img}" alt="Holiday"><div>${holidayInfo[day].text}</div>`;
+                tooltip.style.display = 'block';
+                const rect = cell.getBoundingClientRect();
+                tooltip.style.left = rect.left + window.scrollX + 'px';
+                tooltip.style.top = rect.bottom + window.scrollY + 8 + 'px';
+            });
+        }
+    });
+
+    // Hide tooltip when clicking anywhere else
+    document.addEventListener('click', function(e) {
+        if (!e.target.classList.contains('day') || !holidayInfo[e.target.textContent.trim()]) {
+            tooltip.style.display = 'none';
+        }
+    });
+});
+    </script>
+</body>
+</html>

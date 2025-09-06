@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="calendar">
+        <div class="calendar-side-panel">
+            <div class="calendar-months-panel">
+                <ul class="months-list">
+                    <li><a href="index.html">January</a></li>
+                    <li><a href="february.html">February</a></li>
+                    <li><a href="march.html">March</a></li>
+                    <li><a href="april.html">April</a></li>
+                    <li><a href="may.html">May</a></li>
+                    <li><a href="june.html">June</a></li>
+                    <li><a href="july.html">July</a></li>
+                    <li><a href="august.html">August</a></li>
+                    <li><a href="september.html">September</a></li>
+                    <li><a href="october.html">October</a></li>
+                    <li><a href="november.html">November</a></li>
+                    <li><a href="december.html">December</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="calendar-tooltip" class="calendar-tooltip"></div>
+        <div class="calendar-main">
+            <div class="top">
+                <h1 class="month">NOVEMBER</h1>
+                <h2 class="year">2077</h2>
+            </div>
+            <div class="row calendar-header">
+                <div class="col">Sun</div>
+                <div class="col">Mon</div>
+                <div class="col">Tue</div>
+                <div class="col">Wed</div>
+                <div class="col">Thu</div>
+                <div class="col">Fri</div>
+                <div class="col">Sat</div>
+            </div>
+            <div class="row">
+                <div class="col day empty"></div>
+                <div class="col day holiday">1</div>
+                <div class="col day holiday">2</div>
+                <div class="col day">3</div>
+                <div class="col day">4</div>
+                <div class="col day">5</div>
+                <div class="col day">6</div>
+            </div>
+            <div class="row">
+                <div class="col day holiday">7</div>
+                <div class="col day">8</div>
+                <div class="col day">9</div>
+                <div class="col day">10</div>
+                <div class="col day">11</div>
+                <div class="col day">12</div>
+                <div class="col day">13</div>
+            </div>
+            <div class="row">
+                <div class="col day">14</div>
+                <div class="col day">15</div>
+                <div class="col day">16</div>
+                <div class="col day holiday">17</div>
+                <div class="col day">18</div>
+                <div class="col day">19</div>
+                <div class="col day">20</div>
+            </div>
+            <div class="row">
+                <div class="col day">21</div>
+                <div class="col day">22</div>
+                <div class="col day">23</div>
+                <div class="col day">24</div>
+                <div class="col day">25</div>
+                <div class="col day">26</div>
+                <div class="col day">27</div>
+            </div>
+            <div class="row">
+                <div class="col day">28</div>
+                <div class="col day">29</div>
+                <div class="col day holiday">30</div>
+                <div class="col day empty"></div>
+                <div class="col day empty"></div>
+                <div class="col day empty"></div>
+                <div class="col day empty"></div>
+            </div>
+            <!-- Holidays List -->
+            <div class="calendar-holidays-list">
+                <h3>Holidays</h3>
+                <ul>
+                    <li><strong class="holiday-number">November 1</strong> - All Saints' Day</li>
+                    <li><strong class="holiday-number">November 2</strong> - All Souls' Day</li>
+                    <li><strong class="holiday-number">November 7</strong> - Sheikh Karim'ul Makhdum Day</li>
+                    <li><strong class="holiday-number">November 17</strong> - Amun Jadid</li>
+                    <li><strong class="holiday-number">November 30</strong> - Bonifacio Day</li>
+                </ul>
+            </div>
+            <div class="calendar-note-box">
+                <h3>Notes</h3>
+                <textarea placeholder="Write your notes here..."></textarea>
+            </div>
+            <br>
+        </div>
+                <div class="calendar-week-panel">
+                    <div class="week">Week 1</div>
+                    <div class="week">Week 2</div>
+                    <div class="week">Week 3</div>
+                    <div class="week">Week 4</div>
+                    <div class="week">Week 5</div>
+                </div>
+    </div>    
+    <div id="holiday-tooltip" class="holiday-tooltip"></div>
+    
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tooltip = document.getElementById('holiday-tooltip');
+    const holidayInfo = {
+        1: {
+            img: 'https://c.tadst.com/gfx/750w/istock-1205713173.jpg',
+            text: "All Saints' Day is a celebration of all Christian saints, particularly those who have no special feast days of their own, in many Roman Catholic, Anglican and Protestant churches."
+        },
+        2: {
+            img: 'https://c.tadst.com/gfx/750w/all-souls-global.jpg',
+            text: "All Souls Day is a day of alms giving and prayers for the dead. The intent is for the living to assist those in purgatory. Many western churches annually observe All Souls’ Day on November 2 and many eastern churches celebrate it prior to Lent and the day before Pentecost."
+        },
+        7: {
+            img: 'https://c.tadst.com/gfx/750w/lantern-outside-dusk.jpg',
+            text: "Sheikh Karim'ul Makhdum Day is not a public holiday. Businesses have normal opening hours."
+        },
+        17: {
+            img: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80',
+            text: "he Islamic New Year is on the first day of Muharram, the first month in the lunar Islamic calendar, which differs from the Gregorian calendar."
+        },
+        30: {
+            img: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/2018_Bonifacio_Day_boy_scouts.jpg',
+            text: "Bonifacio Day is a public holiday. It is a day off for the general population, and schools and most businesses are closed."
+        },
+    };
+
+    document.querySelectorAll('.col.day').forEach(function(cell) {
+        const day = cell.textContent.trim();
+        if (holidayInfo[day]) {
+            cell.addEventListener('click', function(e) {
+                tooltip.innerHTML = `<img src="${holidayInfo[day].img}" alt="Holiday"><div>${holidayInfo[day].text}</div>`;
+                tooltip.style.display = 'block';
+                const rect = cell.getBoundingClientRect();
+                tooltip.style.left = rect.left + window.scrollX + 'px';
+                tooltip.style.top = rect.bottom + window.scrollY + 8 + 'px';
+            });
+        }
+    });
+
+    // Hide tooltip when clicking anywhere else
+    document.addEventListener('click', function(e) {
+        if (!e.target.classList.contains('day') || !holidayInfo[e.target.textContent.trim()]) {
+            tooltip.style.display = 'none';
+        }
+    });
+});
+    </script>
+</body>
+</html>

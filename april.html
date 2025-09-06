@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="calendar">
+        <div class="calendar-side-panel">
+            <div class="calendar-months-panel">
+                <ul class="months-list">
+                    <li><a href="index.html">January</a></li>
+                    <li><a href="february.html">February</a></li>
+                    <li><a href="march.html">March</a></li>
+                    <li><a href="april.html">April</a></li>
+                    <li><a href="may.html">May</a></li>
+                    <li><a href="june.html">June</a></li>
+                    <li><a href="july.html">July</a></li>
+                    <li><a href="august.html">August</a></li>
+                    <li><a href="september.html">September</a></li>
+                    <li><a href="october.html">October</a></li>
+                    <li><a href="november.html">November</a></li>
+                    <li><a href="december.html">December</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="calendar-tooltip" class="calendar-tooltip"></div>
+        <div class="calendar-main">
+            <div class="top">
+                <h1 class="month">APRIL</h1>
+                <h2 class="year">2077</h2>
+            </div>
+            <div class="row calendar-header">
+                <div class="col">Sun</div>
+                <div class="col">Mon</div>
+                <div class="col">Tue</div>
+                <div class="col">Wed</div>
+                <div class="col">Thu</div>
+                <div class="col">Fri</div>
+                <div class="col">Sat</div>
+            </div>
+            <div class="row">
+                <div class="col day empty"></div>
+                <div class="col day empty"></div>
+                <div class="col day empty"></div>
+                <div class="col day empty"></div>
+                <div class="col day empty">1</div>
+                <div class="col day empty">2</div>
+                <div class="col day empty">3</div>
+            </div>
+            <div class="row">
+                <div class="col day">4</div>
+                <div class="col day">5</div>
+                <div class="col day">6</div>
+                <div class="col day">7</div>
+                <div class="col day holiday">8</div>
+                <div class="col day holiday">9</div>
+                <div class="col day holiday">10</div>
+            </div>
+            <div class="row">
+                <div class="col day holiday">11</div>
+                <div class="col day">12</div>
+                <div class="col day">13</div>
+                <div class="col day">14</div>
+                <div class="col day">15</div>
+                <div class="col day">16</div>
+                <div class="col day">17</div>
+            </div>
+            <div class="row">
+                <div class="col day">18</div>
+                <div class="col day">19</div>
+                <div class="col day">20</div>
+                <div class="col day">21</div>
+                <div class="col day">22</div>
+                <div class="col day">23</div>
+                <div class="col day">24</div>
+            </div>
+            <div class="row">
+                <div class="col day">25</div>
+                <div class="col day">26</div>
+                <div class="col day">27</div>
+                <div class="col day">28</div>
+                <div class="col day">29</div>
+                <div class="col day">30</div>
+                <div class="col day"></div>
+            </div>
+            <!-- Holidays List -->
+            <div class="calendar-holidays-list">
+                <h3>Holidays</h3>
+                <ul>
+                    <li><strong class="holiday-number">April 8</strong> - Maundy Thursday</li>
+                    <li><strong class="holiday-number">April 9</strong> - Good Friday</li>
+                    <li><strong class="holiday-number">April 9</strong> - The Day of valor</li>
+                    <li><strong class="holiday-number">April 10</strong> - Black saturday</li>
+                    <li><strong class="holiday-number">April 11</strong> - Easter Sunday</li>
+                </ul>
+            </div>
+            <div class="calendar-note-box">
+                <h3>Notes</h3>
+                <textarea placeholder="Write your notes here..."></textarea>
+            </div>
+            <br>
+        </div>
+        <div class="calendar-week-panel">
+            <div class="week">Week 1</div>
+            <div class="week">Week 2</div>
+            <div class="week">Week 3</div>
+            <div class="week">Week 4</div>
+            <div class="week">Week 5</div>
+        </div>
+    </div> 
+    <div id="holiday-tooltip" class="holiday-tooltip"></div>
+    
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tooltip = document.getElementById('holiday-tooltip');
+    const holidayInfo = {
+        8: {
+            img: 'https://c.tadst.com/gfx/750w/maundythursdayphilippines.jpg',
+            text: "Maundy Thursday, which is the day before Good Friday, is a popular Christian holiday in countries such as the Philippines. It is a regular non-working holiday in the Philippines."
+        },
+        9: {
+            img: 'https://c.tadst.com/gfx/750w/goodfridayphilippines.jpg',
+            text: "Good Friday is both a religious occasion and a public holiday in the Philippines, where most people follow the Christian faith. It occurs two days before Easter Sunday."
+        },
+        10: {
+            img: 'https://c.tadst.com/gfx/750w/dayofvalor.jpg',
+            text: "Araw ng Kagitingan, also known as the Day of Valor, marks the greatness of Filipino fighters during World War II. It is marked on or around April 9 in the Philippines each year."
+        },
+        11: {
+            img: 'https://c.tadst.com/gfx/750w/mary-holding-jesus.jpg',
+            text: "Holy Saturday commemorates the day that Jesus Christ lay in the tomb after his death, according to the Christian bible. It is the day after Good Friday and the day before Easter Sunday. It is also known as Easter Eve, Easter Even, Black Saturday, or the Saturday before Easter."
+        }  
+    };
+
+    document.querySelectorAll('.col.day').forEach(function(cell) {
+        const day = cell.textContent.trim();
+        if (holidayInfo[day]) {
+            cell.addEventListener('click', function(e) {
+                tooltip.innerHTML = `<img src="${holidayInfo[day].img}" alt="Holiday"><div>${holidayInfo[day].text}</div>`;
+                tooltip.style.display = 'block';
+                const rect = cell.getBoundingClientRect();
+                tooltip.style.left = rect.left + window.scrollX + 'px';
+                tooltip.style.top = rect.bottom + window.scrollY + 8 + 'px';
+            });
+        }
+    });
+
+    // Hide tooltip when clicking anywhere else
+    document.addEventListener('click', function(e) {
+        if (!e.target.classList.contains('day') || !holidayInfo[e.target.textContent.trim()]) {
+            tooltip.style.display = 'none';
+        }
+    });
+});
+    </script>  
+</body>
+</html>

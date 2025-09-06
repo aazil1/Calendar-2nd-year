@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calendar">
+        <div class="calendar-side-panel">
+            <div class="calendar-months-panel">
+                <ul class="months-list">
+                    <li><a href="index.html">January</a></li>
+                    <li><a href="february.html">February</a></li>
+                    <li><a href="march.html">March</a></li>
+                    <li><a href="april.html">April</a></li>
+                    <li><a href="may.html">May</a></li>
+                    <li><a href="june.html">June</a></li>
+                    <li><a href="july.html">July</a></li>
+                    <li><a href="august.html">August</a></li>
+                    <li><a href="september.html">September</a></li>
+                    <li><a href="october.html">October</a></li>
+                    <li><a href="november.html">November</a></li>
+                    <li><a href="december.html">December</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="calendar-tooltip" class="calendar-tooltip"></div>
+        <div class="calendar-main">
+            <div class="top">
+                <h1 class="month">JANUARY</h1>
+                <h2 class="year">2077</h2>
+            </div>
+            <div class="row calendar-header">
+                <div class="col">Sun</div>
+                <div class="col">Mon</div>
+                <div class="col">Tue</div>
+                <div class="col">Wed</div>
+                <div class="col">Thu</div>
+                <div class="col">Fri</div>
+                <div class="col">Sat</div>
+            </div>
+            <div class="row">
+                <div class="col day empty"></div>
+                <div class="col day empty"></div>
+                <div class="col day empty"></div>
+                <div class="col day empty"></div>
+                <div class="col day holiday">1</div>
+                <div class="col day">2</div>
+                <div class="col day">3</div>
+            </div>
+            <div class="row">
+                <div class="col day">4</div>
+                <div class="col day">5</div>
+                <div class="col day">6</div>
+                <div class="col day">7</div>
+                <div class="col day">8</div>
+                <div class="col day">9</div>
+                <div class="col day">10</div>
+            </div>
+            <div class="row">
+                <div class="col day">11</div>
+                <div class="col day">12</div>
+                <div class="col day">13</div>
+                <div class="col day">14</div>
+                <div class="col day">15</div>
+                <div class="col day">16</div>
+                <div class="col day">17</div>
+            </div>
+            <div class="row">
+                <div class="col day">18</div>
+                <div class="col day">19</div>
+                <div class="col day">20</div>
+                <div class="col day">21</div>
+                <div class="col day">22</div>
+                <div class="col day">23</div>
+                <div class="col day holiday">24</div>
+            </div>
+            <div class="row">
+                <div class="col day">25</div>
+                <div class="col day">26</div>
+                <div class="col day">27</div>
+                <div class="col day">28</div>
+                <div class="col day">29</div>
+                <div class="col day">30</div>
+                <div class="col day">31</div>
+            </div>
+            <!-- Holidays List -->
+            <div class="calendar-holidays-list">
+                <h3>Holidays</h3>
+                <ul>
+                    <li><strong class="holiday-number">January 1</strong> - New Year's Day</li>
+                    <li><strong class="holiday-number">January 24</strong> - Lunar New Year's Day</li>
+                </ul>
+            </div>
+            <div class="calendar-note-box">
+                <h3>Notes</h3>
+                <textarea placeholder="Write your notes here..."></textarea>
+            </div>
+            <br>
+        </div>
+
+        <div class="calendar-week-panel">
+            <div class="week">Week 1</div>
+            <div class="week">Week 2</div>
+            <div class="week">Week 3</div>
+            <div class="week">Week 4</div>
+            <div class="week">Week 5</div>
+        </div>
+    </div>  
+    <div id="holiday-tooltip" class="holiday-tooltip"></div>
+
+    
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tooltip = document.getElementById('holiday-tooltip');
+    const holidayInfo = {
+        1: {
+            img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw6zWt-pBbLU1cc4N282cSElQUhBm84z_0SA&s',
+            text: "A worldwide holiday celebrated on January 1st, marking the beginning of the new year on the Gregorian calendar."
+        },
+        24: {
+            img: 'https://res.cloudinary.com/aenetworks/image/upload/c_fill,ar_2,w_3840,h_1920,g_auto/dpr_auto/f_auto/q_auto:eco/v1/lunarnewyearfestival?_a=BAVAZGDX0',
+            text: "a major holiday marking the start of a new year on the lunisolar calendar, a system based on both the moon's and the sun's cycles, rather than the Gregorian calendar."
+        }
+    };
+
+    document.querySelectorAll('.col.day').forEach(function(cell) {
+        const day = cell.textContent.trim();
+        if (holidayInfo[day]) {
+            cell.addEventListener('click', function(e) {
+                tooltip.innerHTML = `<img src="${holidayInfo[day].img}" alt="Holiday"><div>${holidayInfo[day].text}</div>`;
+                tooltip.style.display = 'block';
+                const rect = cell.getBoundingClientRect();
+                tooltip.style.left = rect.left + window.scrollX + 'px';
+                tooltip.style.top = rect.bottom + window.scrollY + 8 + 'px';
+            });
+        }
+    });
+
+    // Hide tooltip when clicking anywhere else
+    document.addEventListener('click', function(e) {
+        if (!e.target.classList.contains('day') || !holidayInfo[e.target.textContent.trim()]) {
+            tooltip.style.display = 'none';
+        }
+    });
+});
+</script>
+</body>
+</html>
